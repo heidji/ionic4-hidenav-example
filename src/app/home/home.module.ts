@@ -8,12 +8,14 @@ import { ContactsPageModule } from '../contacts/contacts.module';
 import { ProfilePageModule } from '../profile/profile.module';
 
 import { HomePage } from './home.page';
+import {SharedModule} from '../shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+      SharedModule,
     RouterModule.forChild([
       {
         path: '',

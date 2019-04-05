@@ -1,11 +1,11 @@
-<ion-header no-border>
+<ion-header no-border hidenav-header="main">
   <ion-toolbar color="primary">
     <ion-title>
       Example 1
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content hidenav-tabscontent="main">
   <super-tabs>
     <super-tabs-toolbar slot="top">
       <super-tab-button>
@@ -22,7 +22,76 @@
       </super-tab-button>
     </super-tabs-toolbar>
     <super-tabs-container>
-      <super-tab>This is home 1</super-tab>
+      <super-tab>
+        <ion-content hidenav-content="tab1" hidenav-parent="main">
+          <ion-refresher slot="fixed">
+            <ion-refresher-content
+                    pullingIcon="arrow-dropdown"
+                    pullingText="Pull to refresh"
+                    refreshingSpinner="circles"
+                    refreshingText="Refreshing...">
+            </ion-refresher-content>
+          </ion-refresher>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+
+        </ion-content>
+      </super-tab>
       <super-tab>
         <ion-nav [root]="profilePage"></ion-nav>
       </super-tab>
