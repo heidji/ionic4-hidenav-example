@@ -1,0 +1,163 @@
+<hidenav-stretchheader hidenav-sh-header="main">
+  <div #static>
+    <ion-toolbar [routerLink]="'/home/'" color="white" style="font-size: 46px"><ion-icon style="color: white;" name="arrow-round-back"></ion-icon></ion-toolbar>
+  </div>
+  <div #static #hossi style="width: 100%;" (click)="expand()">
+    <label style="left: 60px; top: 115px; position: relative; color: white; font-size: 20px; font-weight: bold;">Moving Title</label>
+  </div>
+  <div #shrinkexpand header-height="50" style="background: darkblue; color: gold" opacity-factor="7" opacity-color="black" (click)="expand()">
+    <table width="100%">
+      <tr>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+      </tr>
+      <tr>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+      </tr>
+      <tr>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+      </tr>
+      <tr>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+      </tr>
+      <tr>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+      </tr>
+      <tr>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+      </tr>
+      <tr>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+      </tr>
+      <tr>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+        <td>TEST</td>
+      </tr>
+    </table>
+  </div>
+</hidenav-stretchheader>
+<ion-content hidenav-sh-tabscontent="main">
+  <super-tabs>
+    <super-tabs-toolbar slot="top">
+      <super-tab-button>
+        <ion-icon name="list"></ion-icon>
+        <ion-label>Feed</ion-label>
+      </super-tab-button>
+      <super-tab-button>
+        <ion-icon name="person"></ion-icon>
+        <ion-label>Profile</ion-label>
+      </super-tab-button>
+      <super-tab-button>
+        <ion-icon name="contacts"></ion-icon>
+        <ion-label>Contacts</ion-label>
+      </super-tab-button>
+    </super-tabs-toolbar>
+    <super-tabs-container>
+      <super-tab>
+        <ion-content hidenav-sh-parent="main"  hidenav-sh-content="tab1">
+          <ion-refresher slot="fixed">
+            <ion-refresher-content
+                    pullingIcon="arrow-dropdown"
+                    pullingText="Pull to refresh"
+                    refreshingSpinner="circles"
+                    refreshingText="Refreshing...">
+            </ion-refresher-content>
+          </ion-refresher>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+          <p>rofl</p>
+
+        </ion-content>
+      </super-tab>
+      <super-tab>
+        <ion-content hidenav-sh-content="tab2" hidenav-sh-parent="main">
+          <p>MAOMAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+          <p>MAO</p>
+
+        </ion-content>
+      </super-tab>
+      <super-tab>
+        <ion-nav [root]="contactsPage"></ion-nav>
+      </super-tab>
+    </super-tabs-container>
+  </super-tabs>
+</ion-content>
