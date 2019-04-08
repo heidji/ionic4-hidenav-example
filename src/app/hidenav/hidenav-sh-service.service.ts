@@ -19,14 +19,14 @@ export class HidenavShService {
             if (this.data[key].parent == name)
                 names.push(key);
         }
-        for(let name of names){
+        for (let name of names) {
             this.initiate2(name);
         }
-        if(names.length == 0)
+        if (names.length == 0)
             this.initiate2(name);
     }
 
-    initiate2(name){
+    initiate2(name) {
         if (!(this.data[name] && (this.data[name].parent && this.data[this.data[name].parent] && this.data[this.data[name].parent].tabscontent && this.data[name].content && this.data[this.data[name].parent].header) || (!this.data[name].parent && this.data[name].content && this.data[name].header)))
             return false;
         let parent = this.data[name].parent;
@@ -77,6 +77,8 @@ export class HidenavShService {
                 let elem = header.nativeElement;
                 if (elem.getAttribute('init-expanded') == 'true')
                     this.data[name].initExpanded = true;
+                if (elem.getAttribute('preserve-header') == 'true')
+                    this.data[name].preserveHeader = true;
                 this.data[name].shrinkexpandheaderHeight = parseInt(elem.getAttribute('header-height'), 10);
                 this.data[name].opacityFactor = parseInt(elem.getAttribute('opacity-factor'), 10);
                 this.data[name].opacityColor = elem.getAttribute('opacity-color');
@@ -89,7 +91,7 @@ export class HidenavShService {
                 supertabsToolbar.style.position = 'absolute';
                 supertabsToolbar.style.transform = 'translate3d(0, ' + this.data[name].shrinkexpandheaderHeight + 'px, 0)';
                 parentElem.style.zIndex = 101;
-                this.waitforelemTabs(name, 'this.data[this.data[name].parent].header.nativeElement.scrollHeight',  "this.data[this.data[name].parent].tabscontentElem.nativeElement.querySelector('super-tabs-toolbar').clientHeight",'proceedShrinkExpandTabs');
+                this.waitforelemTabs(name, 'this.data[this.data[name].parent].header.nativeElement.scrollHeight', 'this.data[this.data[name].parent].tabscontentElem.nativeElement.querySelector(\'super-tabs-toolbar\').clientHeight', 'proceedShrinkExpandTabs');
             }
         }
     }
@@ -227,15 +229,27 @@ export class HidenavShService {
         });
     }
 
-    resetContent(name){
-        let parent = this.data[name].parent;
-        let height = parseInt(this.data[parent].header.nativeElement.parentNode.style.height, 10);
-        if(height <= this.data[name].shrinkexpandHeight && height > this.data[name].shrinkexpandheaderHeight || height == this.data[name].shrinkexpandheaderHeight && this.data[name].contentElem.scrollTop < (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight)){
-            this.data[name].contentElem.scrollTop = this.data[name].shrinkexpandHeight - height;
+    resetContent(name) {
+        if(!this.data[name].preserveHeader){
+            let parent = this.data[name].parent;
+            let height = parseInt(this.data[parent].header.nativeElement.parentNode.style.height, 10);
+            if (height <= this.data[name].shrinkexpandHeight && height > this.data[name].shrinkexpandheaderHeight || height == this.data[name].shrinkexpandheaderHeight && this.data[name].contentElem.scrollTop < (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight)) {
+                this.data[name].contentElem.scrollTop = this.data[name].shrinkexpandHeight - height;
+            }
+        }else{
+            let parent = this.data[name].parent;
+            let parentElem = this.data[parent].header.nativeElement.parentNode;
+            let elem = this.data[parent].header.nativeElement;
+            let tabscontentElem = this.data[parent].tabscontentElem;
+            let supertabsToolbar: any = tabscontentElem.nativeElement.querySelector('super-tabs-toolbar');
+            let overlay = this.data[parent].header.nativeElement.parentNode.querySelector('.overlay');
+            let height = Math.max(Math.min(this.data[name].shrinkexpandHeight, this.data[name].shrinkexpandHeight - this.data[name].contentElem.scrollTop), this.data[name].shrinkexpandheaderHeight);
+            elem.style.transform = 'translate3d(0, ' + -(Math.min((this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight) / 2, this.data[name].contentElem.scrollTop / 2)) + 'px, 0)';
+            parentElem.style.height = height + 'px';
+            overlay.style.setProperty('--opacity', this.data[name].opacityFactor / 10 * Math.min(this.data[name].contentElem.scrollTop / (this.data[name].shrinkexpandHeight / 2), 1));
+            supertabsToolbar.style.transform = 'translate3d(0, ' + height + 'px, 0)';
+            this.scroll.emit({name: this.data[name].parent, height: height});
         }
-
-        /*if (this.data[name].contentElem.scrollTop < (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight))
-           this.data[name].content.scrollToPoint(0, height - (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight));*/
     }
 
     public expand(parent, duration = 200) {
@@ -244,7 +258,7 @@ export class HidenavShService {
             if (this.data[key].parent == parent)
                 names.push(key);
         }
-        for(let name of names)
+        for (let name of names)
             this.data[name].content.scrollToPoint(0, 0, duration);
     }
 
@@ -254,9 +268,8 @@ export class HidenavShService {
             if (this.data[key].parent == parent)
                 names.push(key);
         }
-        for(let name of names){
-            if (this.data[name].contentElem.scrollTop < (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight))
-                this.data[name].content.scrollToPoint(0, (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight), duration);
+        for (let name of names) {
+            this.data[name].content.scrollToPoint(0, (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight), duration);
         }
     }
 
@@ -266,11 +279,12 @@ export class HidenavShService {
             if (this.data[key].parent == parent)
                 names.push(key);
         }
-        for(let name of names) {
-            if (this.data[name].contentElem.scrollTop < (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight))
-                this.data[name].content.scrollToPoint(0, (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight), duration);
-            else
+        for (let name of names) {
+            let height = parseInt(this.data[parent].header.nativeElement.parentNode.style.height, 10);
+            if (height < this.data[name].shrinkexpandHeight)
                 this.data[name].content.scrollToPoint(0, 0, duration);
+            else
+                this.data[name].content.scrollToPoint(0, (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight), duration);
         }
     }
 }
