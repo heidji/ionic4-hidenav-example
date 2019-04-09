@@ -53,6 +53,7 @@ export class HidenavStretchheaderComponent implements OnInit, AfterViewInit {
     @ContentChildren('static', {read: ElementRef}) static: any;
     @HostBinding('class') class: any;
     @Input('hidenav-sh-header') name: string;
+    @Input('no-border') noBorder: string;
 
     @Output() scroll: EventEmitter<number> = new EventEmitter<number>();
 
@@ -72,14 +73,20 @@ export class HidenavStretchheaderComponent implements OnInit, AfterViewInit {
         this.globals.data[this.name].static = this.static;
         this.globals.initiate(this.name);
         this.globals.scroll.subscribe(res => {
-            if(res.name == this.name){
+            if (res.name == this.name) {
                 this.scroll.emit(res.height);
             }
         });
-        let mode = document.querySelector('html').getAttribute('mode');
-        setTimeout(() => {
-            this.class += ' ' + mode;
-        }, 0);
+        if (this.noBorder != 'true') {
+            let mode = document.querySelector('html').getAttribute('mode');
+            setTimeout(() => {
+                if (typeof this.class == 'undefined') {
+                    this.class = mode;
+                } else {
+                    this.class += ' ' + mode;
+                }
+            }, 0);
+        }
     }
 
     expand(duration = 200) {

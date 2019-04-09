@@ -144,7 +144,7 @@ export class HidenavShService {
             setTimeout(() => {
                 //check if height is still ok and adjust if not
                 elemPad.style.height = Math.max(0, (x - (this.data[name].contentElem.scrollHeight - this.data[name].contentElem.offsetHeight) + (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight))) + 'px';
-            }, 10);
+            }, 100);
             this.data[name].contentElem.appendChild(elemPad);
             let scrollDist = this.data[name].initExpanded ? 2 : (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight);
             this.data[name].content.scrollByPoint(0, scrollDist, 0).then(() => {
@@ -220,7 +220,7 @@ export class HidenavShService {
             setTimeout(() => {
                 //check if height is still ok and adjust if not
                 elemPad.style.height = Math.max(0, (x - (this.data[name].contentElem.scrollHeight - this.data[name].contentElem.offsetHeight) + (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight))) + 'px';
-            }, 10);
+            }, 100);
             this.data[name].contentElem.appendChild(elemPad);
             let scrollDist = this.data[name].initExpanded ? 2 : (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight);
             this.data[name].content.scrollByPoint(0, scrollDist, 0).then(() => {
