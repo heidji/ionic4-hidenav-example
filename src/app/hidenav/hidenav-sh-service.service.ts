@@ -1,4 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
+import { Subject} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -8,9 +9,10 @@ export class HidenavShService {
     data = [];
     mode: any = 'ios';
 
-    scroll: any = new EventEmitter();
+    scroll: any;
 
     constructor() {
+        this.scroll = new Subject();
     }
 
     initiate(name) {
@@ -132,7 +134,8 @@ export class HidenavShService {
         elem.style.transform = 'translate3d(0, ' + -((this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight) / 2) + 'px, 0)';
         this.data[name].content.getScrollElement().then(res => {
             this.data[name].contentElem = res;
-            this.data[name].contentElem.style.paddingTop = (this.data[name].shrinkexpandHeight) + 'px';
+            this.data[name].paddingTop = parseInt(window.getComputedStyle(this.data[name].contentElem)['padding-top'], 10);
+            this.data[name].contentElem.style.paddingTop = (this.data[name].shrinkexpandHeight + this.data[name].paddingTop) + 'px';
             //this.data[name].contentElem.style.marginTop = this.data[name].shrinkexpandheaderHeight + 'px';
             let elemPad = document.createElement('div');
             let x = this.data[name].contentElem.scrollHeight + (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight);
@@ -145,8 +148,25 @@ export class HidenavShService {
             this.data[name].contentElem.appendChild(elemPad);
             let scrollDist = this.data[name].initExpanded ? 2 : (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight);
             this.data[name].content.scrollByPoint(0, scrollDist, 0).then(() => {
+                this.data[name].contentHeight = this.data[name].contentEl.nativeElement.clientHeight;
                 this.data[name].content.scrollEvents = true;
                 this.data[name].content.ionScroll.subscribe(e => {
+                    if(e.detail.scrollTop == 0){
+                        this.data[name].contentElem.style.paddingTop = 0;
+                        this.data[name].contentEl.nativeElement.style.height = (this.data[name].contentHeight - this.data[name].shrinkexpandHeight) + 'px';
+                        this.data[name].contentEl.nativeElement.style.top = (this.data[name].shrinkexpandHeight + this.data[name].paddingTop) + 'px';
+                    }else{
+                        let s = e.detail.scrollTop;
+                        this.data[name].contentElem.style.paddingTop = (this.data[name].shrinkexpandHeight + this.data[name].paddingTop) + 'px';
+                        this.data[name].contentEl.nativeElement.style.height = (this.data[name].contentHeight + this.data[name].shrinkexpandHeight) + 'px';
+                        this.data[name].contentEl.nativeElement.style.top = null;
+                        this.data[name].contentElem.scrollTop = s;
+                    }
+                    if (this.data[name].initExpanded) {
+                        this.data[name].content.scrollToPoint(0, 0, 0).then(() => {
+                            this.data[name].initExpanded = false;
+                        });
+                    }
                     if (this.data[name].initExpanded) {
                         this.data[name].content.scrollToPoint(0, 0, 0).then(() => {
                             this.data[name].initExpanded = false;
@@ -161,7 +181,7 @@ export class HidenavShService {
                         this.data[name].guardEvents = false;
                     }, 10);
                     if (this.data[name].lastscroll != height && !this.data[name].guardEvents) {
-                        this.scroll.emit({name: this.data[name].parent ? this.data[name].parent : name, height: height});
+                        this.scroll.next({name: this.data[name].parent ? this.data[name].parent : name, height: height});
                     }
                     this.data[name].lastscroll = height;
                     //
@@ -190,7 +210,8 @@ export class HidenavShService {
         elem.style.transform = 'translate3d(0, ' + -((this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight) / 2) + 'px, 0)';
         this.data[name].content.getScrollElement().then(res => {
             this.data[name].contentElem = res;
-            this.data[name].contentElem.style.paddingTop = (this.data[name].shrinkexpandHeight + supertabsToolbar.clientHeight) + 'px';
+            this.data[name].paddingTop = parseInt(window.getComputedStyle(this.data[name].contentElem)['padding-top'], 10);
+            this.data[name].contentElem.style.paddingTop = (this.data[name].shrinkexpandHeight + supertabsToolbar.clientHeight + this.data[name].paddingTop) + 'px';
             //this.data[name].contentElem.style.marginTop = this.data[name].shrinkexpandheaderHeight + 'px';
             let elemPad = document.createElement('div');
             let x = this.data[name].contentElem.scrollHeight + (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight);
@@ -203,8 +224,20 @@ export class HidenavShService {
             this.data[name].contentElem.appendChild(elemPad);
             let scrollDist = this.data[name].initExpanded ? 2 : (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight);
             this.data[name].content.scrollByPoint(0, scrollDist, 0).then(() => {
+                this.data[name].contentHeight = this.data[name].contentEl.nativeElement.clientHeight;
                 this.data[name].content.scrollEvents = true;
                 this.data[name].content.ionScroll.subscribe(e => {
+                    if(e.detail.scrollTop == 0){
+                        this.data[name].contentElem.style.paddingTop = 0;
+                        this.data[name].contentEl.nativeElement.style.height = (this.data[name].contentHeight - (this.data[name].shrinkexpandHeight + supertabsToolbar.clientHeight)) + 'px';
+                        this.data[name].contentEl.nativeElement.style.top = (this.data[name].shrinkexpandHeight + supertabsToolbar.clientHeight + this.data[name].paddingTop) + 'px';
+                    }else{
+                        let s = e.detail.scrollTop;
+                        this.data[name].contentElem.style.paddingTop = (this.data[name].shrinkexpandHeight + supertabsToolbar.clientHeight + this.data[name].paddingTop) + 'px';
+                        this.data[name].contentEl.nativeElement.style.height = (this.data[name].contentHeight + this.data[name].shrinkexpandHeight + supertabsToolbar.clientHeight) + 'px';
+                        this.data[name].contentEl.nativeElement.style.top = null;
+                        this.data[name].contentElem.scrollTop = s;
+                    }
                     if (this.data[name].initExpanded) {
                         this.data[name].content.scrollToPoint(0, 0, 0).then(() => {
                             this.data[name].initExpanded = false;
@@ -220,7 +253,7 @@ export class HidenavShService {
                         this.data[name].guardEvents = false;
                     }, 10);
                     if (this.data[name].lastscroll != height && !this.data[name].guardEvents) {
-                        this.scroll.emit({name: this.data[name].parent ? this.data[name].parent : name, height: height});
+                        this.scroll.next({name: this.data[name].parent ? this.data[name].parent : name, height: height});
                     }
                     this.data[name].lastscroll = height;
                     //
@@ -248,7 +281,7 @@ export class HidenavShService {
             parentElem.style.height = height + 'px';
             overlay.style.setProperty('--opacity', this.data[name].opacityFactor / 10 * Math.min(this.data[name].contentElem.scrollTop / (this.data[name].shrinkexpandHeight / 2), 1));
             supertabsToolbar.style.transform = 'translate3d(0, ' + height + 'px, 0)';
-            this.scroll.emit({name: this.data[name].parent, height: height});
+            this.scroll.next({name: this.data[name].parent, height: height});
         }
     }
 
@@ -279,8 +312,8 @@ export class HidenavShService {
             if (this.data[key].parent == parent)
                 names.push(key);
         }
+        let height = parseInt(this.data[parent].header.nativeElement.parentNode.style.height, 10);
         for (let name of names) {
-            let height = parseInt(this.data[parent].header.nativeElement.parentNode.style.height, 10);
             if (height < this.data[name].shrinkexpandHeight)
                 this.data[name].content.scrollToPoint(0, 0, duration);
             else

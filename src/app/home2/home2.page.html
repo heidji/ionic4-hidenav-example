@@ -111,7 +111,14 @@
 </hidenav-stretchheader>
 
 <ion-content padding hidenav-sh-content="main">
-
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <p>THE WORLD IS YOUR OYSTER</p>
   <p>THE WORLD IS YOUR OYSTER</p>
   <p>THE WORLD IS YOUR OYSTER</p>

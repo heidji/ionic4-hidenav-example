@@ -10,7 +10,7 @@ export class HidenavShContentDirective {
     @Input('hidenav-sh-content') name: string;
     @Input('hidenav-sh-parent') parent: string;
 
-    constructor( @Host() @Self() @Optional() public el: IonContent, private globals: HidenavShService) {
+    constructor( @Host() @Self() @Optional() public el: IonContent, public contentEl: ElementRef, private globals: HidenavShService) {
 
     }
 
@@ -20,6 +20,7 @@ export class HidenavShContentDirective {
         if(this.globals.data[this.name].content != null )
             console.warn('HIDENAV: "'+this.name + '" has been initialized before as SH-CONTENT, please make sure all your live directives carry unique names in order to avoid unexpected results');
         this.globals.data[this.name].content = this.el;
+        this.globals.data[this.name].contentEl = this.contentEl;
         this.globals.data[this.name].parent = this.parent;
         this.globals.initiate(this.name);
     }
