@@ -79,7 +79,7 @@ export class HidenavShService {
                 let elem = header.nativeElement;
                 if (parentElem.getAttribute('init-expanded') == 'true')
                     this.data[name].initExpanded = true;
-                if (parentElem.getAttribute('preserve-header') == 'true'){
+                if (parentElem.getAttribute('preserve-header') == 'true') {
                     this.data[name].preserveHeader = true;
                     this.data[parent].preserveHeader = true;
                 }
@@ -313,17 +313,21 @@ export class HidenavShService {
     }
 
     public expand(parent, duration = 200) {
-        if (!this.data[parent].preserveHeader) {
-            let names = [];
-            for (let key in this.data) {
-                if (this.data[key].parent == parent)
-                    names.push(key);
-            }
-            for (let name of names)
-                this.data[name].content.scrollToPoint(0, 0, duration);
+        if (this.data[parent].content) {
+
         } else {
-            let currentTab = this.findCurrentTab(parent);
-            this.data[currentTab].content.scrollToPoint(0, 0, duration);
+            if (!this.data[parent].preserveHeader) {
+                let names = [];
+                for (let key in this.data) {
+                    if (this.data[key].parent == parent)
+                        names.push(key);
+                }
+                for (let name of names)
+                    this.data[name].content.scrollToPoint(0, 0, duration);
+            } else {
+                let currentTab = this.findCurrentTab(parent);
+                this.data[currentTab].content.scrollToPoint(0, 0, duration);
+            }
         }
     }
 
@@ -337,35 +341,44 @@ export class HidenavShService {
             for (let name of names) {
                 this.data[name].content.scrollToPoint(0, (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight), duration);
             }
-        }else{
+        } else {
             let currentTab = this.findCurrentTab(parent);
             this.data[currentTab].content.scrollToPoint(0, (this.data[currentTab].shrinkexpandHeight - this.data[currentTab].shrinkexpandheaderHeight), duration);
         }
     }
 
     public toggle(parent, duration = 200) {
-        if (!this.data[parent].preserveHeader) {
-            let names = [];
-            for (let key in this.data) {
-                if (this.data[key].parent == parent)
-                    names.push(key);
-            }
+        if (this.data[parent].content) {
             let height = parseInt(this.data[parent].header.nativeElement.parentNode.style.height, 10);
-            for (let name of names) {
-                if (height < this.data[name].shrinkexpandHeight)
-                    this.data[name].content.scrollToPoint(0, 0, duration);
-                else
-                    this.data[name].content.scrollToPoint(0, (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight), duration);
-            }
-        } else {
-            let currentTab = this.findCurrentTab(parent);
-            let height = parseInt(this.data[parent].header.nativeElement.parentNode.style.height, 10);
-
-            if (height < this.data[currentTab].shrinkexpandHeight)
-                this.data[currentTab].content.scrollToPoint(0, 0, duration);
+            if (height < this.data[parent].shrinkexpandHeight)
+                this.data[parent].content.scrollToPoint(0, 0, duration);
             else
-                this.data[currentTab].content.scrollToPoint(0, (this.data[currentTab].shrinkexpandHeight - this.data[currentTab].shrinkexpandheaderHeight), duration);
+                this.data[parent].content.scrollToPoint(0, (this.data[parent].shrinkexpandHeight - this.data[parent].shrinkexpandheaderHeight), duration);
 
+        } else {
+            if (!this.data[parent].preserveHeader) {
+                let names = [];
+                for (let key in this.data) {
+                    if (this.data[key].parent == parent)
+                        names.push(key);
+                }
+                let height = parseInt(this.data[parent].header.nativeElement.parentNode.style.height, 10);
+                for (let name of names) {
+                    if (height < this.data[name].shrinkexpandHeight)
+                        this.data[name].content.scrollToPoint(0, 0, duration);
+                    else
+                        this.data[name].content.scrollToPoint(0, (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight), duration);
+                }
+            } else {
+                let currentTab = this.findCurrentTab(parent);
+                let height = parseInt(this.data[parent].header.nativeElement.parentNode.style.height, 10);
+
+                if (height < this.data[currentTab].shrinkexpandHeight)
+                    this.data[currentTab].content.scrollToPoint(0, 0, duration);
+                else
+                    this.data[currentTab].content.scrollToPoint(0, (this.data[currentTab].shrinkexpandHeight - this.data[currentTab].shrinkexpandheaderHeight), duration);
+
+            }
         }
     }
 }
