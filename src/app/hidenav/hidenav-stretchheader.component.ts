@@ -54,6 +54,11 @@ export class HidenavStretchheaderComponent implements OnInit, AfterViewInit {
     @HostBinding('class') class: any;
     @Input('hidenav-sh-header') name: string;
     @Input('no-border') noBorder: string;
+    @Input('header-height') dummy: any;
+    @Input('init-expanded') dummy1: any;
+    @Input('opacity-color') dummy2: any;
+    @Input('opacity-factor') dummy3: any;
+    @Input('preserve-header') dummy4: any;
 
     @Output() scroll: EventEmitter<number> = new EventEmitter<number>();
 

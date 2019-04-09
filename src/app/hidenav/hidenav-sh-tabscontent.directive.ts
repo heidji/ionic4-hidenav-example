@@ -22,6 +22,7 @@ export class HidenavShTabscontentDirective {
             console.warn('HIDENAV: "' + this.name + '" has been initialized before as SH-TABSCONTENT, please make sure all your live directives carry unique names in order to avoid unexpected results');
         this.globals.data[this.name].tabscontent = this.el;
         this.globals.data[this.name].tabscontentElem = this.contentElem;
+        this.globals.data[this.name].supertabs = this.supertabs;
         this.globals.initiate(this.name);
 
         this.supertabs.tabChange.subscribe(e => {
