@@ -26,7 +26,7 @@ export class HidenavShContentDirective {
     }
 
     ngOnDestroy() {
-        this.globals.data[this.name] = null;
+        delete this.globals.data[this.name].content;
     }
 
 }

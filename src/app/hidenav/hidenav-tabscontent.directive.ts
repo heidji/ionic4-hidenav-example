@@ -34,7 +34,7 @@ export class HidenavTabscontentDirective {
     }
 
     ngOnDestroy() {
-        this.globals.data[this.name] = null;
+        delete this.globals.data[this.name].tabscontent;
     }
 
 }

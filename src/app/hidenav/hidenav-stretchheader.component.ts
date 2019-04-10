@@ -106,5 +106,8 @@ export class HidenavStretchheaderComponent implements OnInit, AfterViewInit {
         this.globals.toggle(this.name, duration);
     }
 
+    ngOnDestroy() {
+        delete this.globals.data[this.name].header;
+    }
 
 }

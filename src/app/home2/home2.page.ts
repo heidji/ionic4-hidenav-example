@@ -10,7 +10,7 @@ import {HidenavStretchheaderComponent} from '../hidenav/hidenav-stretchheader.co
 export class Home2Page implements OnInit {
 
   @ViewChild(IonContent) content: IonContent;
-  @ViewChild('hossi', {read: ElementRef}) title: ElementRef;
+  @ViewChild('title', {read: ElementRef}) title: ElementRef;
   @ViewChild(HidenavStretchheaderComponent) hidenav: HidenavStretchheaderComponent;
   constructor() { }
 
@@ -21,7 +21,7 @@ export class Home2Page implements OnInit {
   }
 
   expand() {
-    this.hidenav.shrink(1400);
+    this.hidenav.toggle(300);
   }
 
 }

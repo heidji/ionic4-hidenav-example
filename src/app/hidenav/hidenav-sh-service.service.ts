@@ -218,6 +218,7 @@ export class HidenavShService {
             this.data[name].contentElem = res;
             this.data[name].paddingTop = parseInt(window.getComputedStyle(this.data[name].contentElem)['padding-top'], 10);
             this.data[name].contentElem.style.paddingTop = (this.data[name].shrinkexpandHeight + supertabsToolbar.clientHeight + this.data[name].paddingTop) + 'px';
+            this.data[name].contentElem.style.height = (this.data[parent].tabscontentElem.nativeElement.clientHeight) + 'px';
             //this.data[name].contentElem.style.marginTop = this.data[name].shrinkexpandheaderHeight + 'px';
             let elemPad = document.createElement('div');
             elemPad.style.cssText = 'background:rgba(0,0,0,0)';

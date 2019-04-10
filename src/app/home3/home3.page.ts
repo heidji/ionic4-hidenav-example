@@ -13,7 +13,7 @@ export class Home3Page {
   profilePage = ProfilePage;
 
   @ViewChild(HidenavStretchheaderComponent) hidenav: HidenavStretchheaderComponent;
-    @ViewChild('hossi', {read: ElementRef}) title: ElementRef;
+    @ViewChild('title', {read: ElementRef}) title: ElementRef;
 
   expand() {
     this.hidenav.toggle()
