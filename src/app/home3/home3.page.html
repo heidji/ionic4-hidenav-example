@@ -1,4 +1,4 @@
-<hidenav-stretchheader hidenav-sh-header="main" header-height="50" opacity-factor="7" opacity-color="black" preserve-header="true">
+<hidenav-stretchheader hidenav-sh-header="main2" header-height="50" opacity-factor="7" opacity-color="black" preserve-header="true">
   <div #static>
     <ion-toolbar [routerLink]="'/home/'" color="white" style="font-size: 46px"><ion-icon style="color: white;" name="arrow-round-back"></ion-icon></ion-toolbar>
   </div>
@@ -6,6 +6,7 @@
     <label style="left: 60px; top: 115px; position: relative; color: white; font-size: 20px; font-weight: bold;">Moving Title</label>
   </div>
   <div #shrinkexpand style="background: darkblue; color: gold" (click)="expand()" >
+
     <table width="100%">
       <tr>
         <td>TEST</td>
@@ -58,7 +59,7 @@
     </table>
   </div>
 </hidenav-stretchheader>
-<ion-content hidenav-sh-tabscontent="main">
+<ion-content hidenav-sh-tabscontent="main2">
   <super-tabs>
     <super-tabs-toolbar slot="top">
       <super-tab-button>
@@ -76,7 +77,7 @@
     </super-tabs-toolbar>
     <super-tabs-container>
       <super-tab>
-        <ion-content hidenav-sh-parent="main"  hidenav-sh-content="tab1" padding>
+        <ion-content hidenav-sh-parent="main2"  hidenav-sh-content="tab12" padding>
           <ion-refresher slot="fixed">
             <ion-refresher-content
                     pullingIcon="arrow-dropdown"
@@ -100,7 +101,7 @@
         </ion-content>
       </super-tab>
       <super-tab>
-        <ion-content hidenav-sh-content="tab2" hidenav-sh-parent="main">
+        <ion-content hidenav-sh-content="tab22" hidenav-sh-parent="main2">
           <p>MAOMAO</p>
           <p>MAO</p>
           <p>MAO</p>

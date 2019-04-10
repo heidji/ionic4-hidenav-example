@@ -1,113 +1,13 @@
-<hidenav-stretchheader hidenav-sh-header="main" no-border="true" header-height="50" opacity-factor="7" opacity-color="black" init-expanded="false">
+<hidenav-stretchheader hidenav-sh-header="main" header-height="50" opacity-factor="7" opacity-color="black" init-expanded="false">
   <div #static>
     <ion-toolbar [routerLink]="'/home/'" color="white" style="font-size: 46px"><ion-icon style="color: white;" name="arrow-round-back"></ion-icon></ion-toolbar>
   </div>
   <div #static #hossi style="width: 100%;" (click)="expand()">
-    <label style="left: 60px; top: 115px; position: relative; color: white; font-size: 20px; font-weight: bold;">Moving Title</label>
+    <label style="left: 60px; top: 15px; position: relative; color: white; font-size: 20px; font-weight: bold;">Moving Title</label>
   </div>
-  <div #shrinkexpand style="background: darkblue; color: gold" (click)="expand()">
-    <table width="100%">
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-    </table>
+  <div #shrinkexpand style="background: white; color: gold; height: 250px" (click)="expand()">
+    <img src="assets/cat.jpg" width="100%" alt="">
   </div>
-  <!--ion-header #shrinkexpand header-height="50" style="background: wheat" opacity-factor="3" opacity-color="#3880ff">
-    <ion-grid no-padding>
-      <ion-row>
-        <ion-col>TEST</ion-col>
-        <ion-col>TEST</ion-col>
-        <ion-col>TEST</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>TEST</ion-col>
-        <ion-col>TEST</ion-col>
-        <ion-col>TEST</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>TEST</ion-col>
-        <ion-col>TEST</ion-col>
-        <ion-col>TEST</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>TEST</ion-col>
-        <ion-col>TEST</ion-col>
-        <ion-col>TEST</ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-header-->
-  <!--ion-header #shrink>
-    <ion-toolbar>
-      <ion-title>home3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-header #expand style="height: 220px;">
-    <div style="width: 100%; position: relative; height: 220px; z-index: 1">
-      <table style="width: 100%; height: 100%" width="100%">
-        <tr>
-          <td>
-            <div style="width: 100%; height: 100%; background: #0ec254"></div>
-          </td>
-          <td>
-            <div style="width: 100%; height: 100%; background: blueviolet"></div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div style="width: 100%; height: 100%; background: blueviolet"></div>
-          </td>
-          <td>
-            <div style="width: 100%; height: 100%; background: #0ec254"></div>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </ion-header-->
 </hidenav-stretchheader>
 
 <ion-content padding hidenav-sh-content="main">
@@ -119,12 +19,25 @@
             refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
-  <p>THE WORLD IS YOUR OYSTER</p>
-  <p>THE WORLD IS YOUR OYSTER</p>
-  <p>THE WORLD IS YOUR OYSTER</p>
-  <p>THE WORLD IS YOUR OYSTER</p>
-  <p>THE WORLD IS YOUR OYSTER</p>
-  <p>THE WORLD IS YOUR OYSTER</p>
-  <p>THE WORLD IS YOUR OYSTER</p>
+  <ion-card>
+    <img src="assets/cat2.jpg">
+    <ion-card-header class="hydrated">
+      <ion-card-subtitle role="heading" aria-level="3" class="hydrated">Destination</ion-card-subtitle>
+      <ion-card-title role="heading" aria-level="2" class="hydrated">Madison, WI</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="card-content card-content-ios hydrated">
+      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <img src="assets/cat3.jpg">
+    <ion-card-header class="hydrated">
+      <ion-card-subtitle role="heading" aria-level="3" class="hydrated">Destination</ion-card-subtitle>
+      <ion-card-title role="heading" aria-level="2" class="hydrated">Madison, WI</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="card-content card-content-ios hydrated">
+      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

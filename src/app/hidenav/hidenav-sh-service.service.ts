@@ -314,7 +314,7 @@ export class HidenavShService {
 
     public expand(parent, duration = 200) {
         if (this.data[parent].content) {
-
+            this.data[parent].content.scrollToPoint(0, 0, duration);
         } else {
             if (!this.data[parent].preserveHeader) {
                 let names = [];
@@ -332,18 +332,25 @@ export class HidenavShService {
     }
 
     public shrink(parent, duration = 200) {
-        if (!this.data[parent].preserveHeader) {
-            let names = [];
-            for (let key in this.data) {
-                if (this.data[key].parent == parent)
-                    names.push(key);
+        let height = parseInt(this.data[parent].header.nativeElement.parentNode.style.height, 10);
+        if(height > this.data[parent].shrinkexpandheaderHeight){
+            if (this.data[parent].content) {
+                this.data[parent].content.scrollToPoint(0, (this.data[parent].shrinkexpandHeight - this.data[parent].shrinkexpandheaderHeight), duration);
+            }else{
+                if (!this.data[parent].preserveHeader) {
+                    let names = [];
+                    for (let key in this.data) {
+                        if (this.data[key].parent == parent)
+                            names.push(key);
+                    }
+                    for (let name of names) {
+                        this.data[name].content.scrollToPoint(0, (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight), duration);
+                    }
+                } else {
+                    let currentTab = this.findCurrentTab(parent);
+                    this.data[currentTab].content.scrollToPoint(0, (this.data[currentTab].shrinkexpandHeight - this.data[currentTab].shrinkexpandheaderHeight), duration);
+                }
             }
-            for (let name of names) {
-                this.data[name].content.scrollToPoint(0, (this.data[name].shrinkexpandHeight - this.data[name].shrinkexpandheaderHeight), duration);
-            }
-        } else {
-            let currentTab = this.findCurrentTab(parent);
-            this.data[currentTab].content.scrollToPoint(0, (this.data[currentTab].shrinkexpandHeight - this.data[currentTab].shrinkexpandheaderHeight), duration);
         }
     }
 

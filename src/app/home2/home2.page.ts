@@ -16,12 +16,12 @@ export class Home2Page implements OnInit {
 
   ngOnInit() {
     this.hidenav.scroll.subscribe(res => {
-      this.title.nativeElement.style.transform = 'translate3d(0, '+(res-150)+'px, 0)';
+      this.title.nativeElement.style.transform = 'translate3d(0, '+(res-50)+'px, 0)';
     })
   }
 
   expand() {
-    this.hidenav.toggle(1400);
+    this.hidenav.shrink(1400);
   }
 
 }
