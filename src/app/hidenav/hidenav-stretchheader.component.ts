@@ -69,28 +69,29 @@ export class HidenavStretchheaderComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-
-        if (typeof this.globals.data[this.name] == 'undefined' || this.globals.data[this.name] == null)
-            this.globals.data[this.name] = [];
-        if (this.globals.data[this.name].header != null)
-            console.warn('HIDENAV: "' + this.name + '" has been initialized before as SH-HEADER, please make sure all your live directives carry unique names in order to avoid unexpected results');
-        this.globals.data[this.name].header = this.header;
-        this.globals.data[this.name].static = this.static;
-        this.globals.initiate(this.name);
-        this.globals.scroll.subscribe(res => {
-            if (res.name == this.name) {
-                this.scroll.emit(res.height);
-            }
-        });
-        if (this.noBorder != 'true') {
-            let mode = document.querySelector('html').getAttribute('mode');
-            setTimeout(() => {
-                if (typeof this.class == 'undefined') {
-                    this.class = mode;
-                } else {
-                    this.class += ' ' + mode;
+        if(this.name) {
+            if (typeof this.globals.data[this.name] == 'undefined' || this.globals.data[this.name] == null)
+                this.globals.data[this.name] = [];
+            if (this.globals.data[this.name].header != null)
+                console.warn('HIDENAV: "' + this.name + '" has been initialized before as SH-HEADER, please make sure all your live directives carry unique names in order to avoid unexpected results');
+            this.globals.data[this.name].header = this.header;
+            this.globals.data[this.name].static = this.static;
+            this.globals.initiate(this.name);
+            this.globals.scroll.subscribe(res => {
+                if (res.name == this.name) {
+                    this.scroll.emit(res.height);
                 }
-            }, 0);
+            });
+            if (this.noBorder != 'true') {
+                let mode = document.querySelector('html').getAttribute('mode');
+                setTimeout(() => {
+                    if (typeof this.class == 'undefined') {
+                        this.class = mode;
+                    } else {
+                        this.class += ' ' + mode;
+                    }
+                }, 0);
+            }
         }
     }
 
@@ -107,7 +108,9 @@ export class HidenavStretchheaderComponent implements OnInit, AfterViewInit {
     }
 
     ngOnDestroy() {
-        delete this.globals.data[this.name].header;
+        if(this.name) {
+            delete this.globals.data[this.name].header;
+        }
     }
 
 }

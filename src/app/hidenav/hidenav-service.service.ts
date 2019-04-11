@@ -142,26 +142,34 @@ export class HidenavService {
         }
     }
 
-    resetTabs(name) {
-        let parent = name;
-        for (let key in this.data) {
-            if (this.data[key].parent == name)
-                name = key;
-        }
+    resetTabs(parent, name) {
         let header = this.data[parent].header;
         let tabscontentElem = this.data[parent].tabscontentElem;
         let supertabsToolbar: any = tabscontentElem.nativeElement.querySelector('super-tabs-toolbar');
-        let scrollContent: any = this.data[name].contentElem.nativeElement.shadowRoot.querySelector('.inner-scroll');
         let tabsscrollContent: any = this.data[parent].tabscontentElem.nativeElement.shadowRoot.querySelector('.inner-scroll');
+
+        let scrollContent: any = this.data[name].contentElem.nativeElement.shadowRoot.querySelector('.inner-scroll');
         scrollContent.scrollTop = scrollContent.scrollTop - this.data[name].scrollTop;
         setTimeout(() => {
-            supertabsToolbar.style.position = 'static';
-            scrollContent.style.paddingTop = this.data[name].paddingTop + 'px';
-            tabscontentElem.nativeElement.style.top = null;
-            tabsscrollContent.style.height = this.data[parent].tabscontentHeight + 'px';
-            tabscontentElem.nativeElement.style.top = null;
+            if (scrollContent.scrollTop == 0) {
+                console.log(name, scrollContent.scrollTop);
+                supertabsToolbar.style.position = 'static';
+                scrollContent.style.paddingTop = this.data[name].paddingTop + 'px';
+                tabscontentElem.nativeElement.style.top = null;
+                tabsscrollContent.style.height = this.data[parent].tabscontentHeight + 'px';
+                tabscontentElem.nativeElement.style.top = null;
+            } else {
+                let s = scrollContent.scrollTop;
+                supertabsToolbar.style.position = 'absolute';
+                supertabsToolbar.style.top = this.data[name].navheight + 'px';
+                tabsscrollContent.style.height = (this.data[parent].tabscontentHeight + this.data[name].navheight) + 'px';
+                tabscontentElem.nativeElement.style.top = '-' + this.data[name].navheight + 'px';
+                scrollContent.style.paddingTop = this.data[name].paddingTop + supertabsToolbar.clientHeight + this.data[name].navheight + 'px';
+                scrollContent.scrollTop = s;
+            }
             header.nativeElement.style.transform = null;
             supertabsToolbar.style.transform = null;
         }, 20);
+
     }
 }
