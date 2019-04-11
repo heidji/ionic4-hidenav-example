@@ -1,65 +1,14 @@
-<hidenav-stretchheader hidenav-sh-header="main2" header-height="50" opacity-factor="7" opacity-color="black" preserve-header="true">
-  <div #static>
-    <ion-toolbar [routerLink]="'..'" ionic color="white" style="font-size: 46px"><ion-icon style="color: white;" name="arrow-round-back"></ion-icon></ion-toolbar>
-  </div>
-  <div #static #title style="width: 100%;" (click)="expand()">
-    <label style="left: 60px; top: 115px; position: relative; color: white; font-size: 20px; font-weight: bold;">Moving Title</label>
-  </div>
-  <div #shrinkexpand style="background: darkblue; color: gold" (click)="expand()" >
-
-    <table width="100%">
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-      <tr>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-        <td>TEST</td>
-      </tr>
-    </table>
-  </div>
-</hidenav-stretchheader>
-<ion-content hidenav-sh-tabscontent="main2">
+<ion-header no-border hidenav-header="main">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button [routerLink]="'..'" defaultHref="main"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Example 1
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content hidenav-tabscontent="main">
   <super-tabs>
     <super-tabs-toolbar slot="top">
       <super-tab-button>
@@ -77,7 +26,7 @@
     </super-tabs-toolbar>
     <super-tabs-container>
       <super-tab>
-        <ion-content hidenav-sh-parent="main2"  hidenav-sh-content="tab12" padding>
+        <ion-content hidenav-content="tab1" hidenav-parent="main">
           <ion-refresher slot="fixed">
             <ion-refresher-content
                     pullingIcon="arrow-dropdown"
@@ -86,115 +35,30 @@
                     refreshingText="Refreshing...">
             </ion-refresher-content>
           </ion-refresher>
-          <ion-list >
-            <ion-list-header>
-              Recent Conversations
-            </ion-list-header>
-
-            <ion-item >
-              <ion-avatar slot="start">
-                <img src="assets/avatar-placeholder.png">
-              </ion-avatar>
-              <ion-label>
-                <h2>Finn</h2>
-                <h3>I'm a big deal</h3>
-                <p>Listen, I've had a pretty messed up day...</p>
-              </ion-label>
-            </ion-item>
-
-            <ion-item >
-              <ion-avatar slot="start">
-                <img src="assets/avatar-placeholder.png">
-              </ion-avatar>
-              <ion-label>
-                <h2>Finn</h2>
-                <h3>I'm a big deal</h3>
-                <p>Listen, I've had a pretty messed up day...</p>
-              </ion-label>
-            </ion-item>
-
-            <ion-item >
-              <ion-avatar slot="start">
-                <img src="assets/avatar-placeholder.png">
-              </ion-avatar>
-              <ion-label>
-                <h2>Finn</h2>
-                <h3>I'm a big deal</h3>
-                <p>Listen, I've had a pretty messed up day...</p>
-              </ion-label>
-            </ion-item>
-
-            <ion-item >
-              <ion-avatar slot="start">
-                <img src="assets/avatar-placeholder.png">
-              </ion-avatar>
-              <ion-label>
-                <h2>Finn</h2>
-                <h3>I'm a big deal</h3>
-                <p>Listen, I've had a pretty messed up day...</p>
-              </ion-label>
-            </ion-item>
-
-            <ion-item >
-              <ion-avatar slot="start">
-                <img src="assets/avatar-placeholder.png">
-              </ion-avatar>
-              <ion-label>
-                <h2>Finn</h2>
-                <h3>I'm a big deal</h3>
-                <p>Listen, I've had a pretty messed up day...</p>
-              </ion-label>
-            </ion-item>
-
-            <ion-item >
-              <ion-avatar slot="start">
-                <img src="assets/avatar-placeholder.png">
-              </ion-avatar>
-              <ion-label>
-                <h2>Finn</h2>
-                <h3>I'm a big deal</h3>
-                <p>Listen, I've had a pretty messed up day...</p>
-              </ion-label>
-            </ion-item>
-
-            <ion-item >
-              <ion-avatar slot="start">
-                <img src="assets/avatar-placeholder.png">
-              </ion-avatar>
-              <ion-label>
-                <h2>Finn</h2>
-                <h3>I'm a big deal</h3>
-                <p>Listen, I've had a pretty messed up day...</p>
-              </ion-label>
-            </ion-item>
-
-            <ion-item >
-              <ion-avatar slot="start">
-                <img src="assets/avatar-placeholder.png">
-              </ion-avatar>
-              <ion-label>
-                <h2>Finn</h2>
-                <h3>I'm a big deal</h3>
-                <p>Listen, I've had a pretty messed up day...</p>
-              </ion-label>
-            </ion-item>
-          </ion-list>
-
+          <ion-card>
+            <img src="assets/madison.jpg">
+            <ion-card-header class="hydrated">
+              <ion-card-subtitle role="heading" aria-level="3" class="hydrated">Destination</ion-card-subtitle>
+              <ion-card-title role="heading" aria-level="2" class="hydrated">Madison, WI</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content card-content-ios hydrated">
+              Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+            </ion-card-content>
+          </ion-card>
+          <ion-card>
+            <img src="assets/madison.jpg">
+            <ion-card-header class="hydrated">
+              <ion-card-subtitle role="heading" aria-level="3" class="hydrated">Destination</ion-card-subtitle>
+              <ion-card-title role="heading" aria-level="2" class="hydrated">Madison, WI</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content card-content-ios hydrated">
+              Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+            </ion-card-content>
+          </ion-card>
         </ion-content>
       </super-tab>
       <super-tab>
-        <ion-content hidenav-sh-content="tab22" hidenav-sh-parent="main2">
-          <p>LOREM IPSUM</p>
-          <p>LOREM IPSUM</p>
-          <p>LOREM IPSUM</p>
-          <p>LOREM IPSUM</p>
-          <p>LOREM IPSUM</p>
-          <p>LOREM IPSUM</p>
-          <p>LOREM IPSUM</p>
-          <p>LOREM IPSUM</p>
-          <p>LOREM IPSUM</p>
-
-        </ion-content>
+        <ion-nav [root]="profilePage"></ion-nav>
       </super-tab>
       <super-tab>
         <ion-nav [root]="contactsPage"></ion-nav>

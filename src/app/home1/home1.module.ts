@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SuperTabsModule } from '@ionic-super-tabs/angular';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ContactsPageModule } from '../contacts/contacts.module';
-import { ProfilePageModule } from '../profile/profile.module';
-
-import { HomePage } from './home.page';
+import { Home1Page } from './home1.page';
 import {SharedModule} from '../shared.module';
 
 @NgModule({
@@ -19,13 +15,10 @@ import {SharedModule} from '../shared.module';
     RouterModule.forChild([
       {
         path: '',
-        component: HomePage
+        component: Home1Page
       }
-    ]),
-    SuperTabsModule,
-    ContactsPageModule,
-    ProfilePageModule,
+    ])
   ],
-  declarations: [HomePage]
+  declarations: [Home1Page]
 })
-export class HomePageModule {}
+export class Home1PageModule {}
