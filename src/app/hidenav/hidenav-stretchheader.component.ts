@@ -53,11 +53,11 @@ export class HidenavStretchheaderComponent implements OnInit, AfterViewInit {
     @HostBinding('class') class: any;
     name: any;
     @Input('no-border') noBorder: string;
-    @Input('header-height') dummy: any;
-    @Input('init-expanded') dummy1: any;
-    @Input('opacity-color') dummy2: any;
-    @Input('opacity-factor') dummy3: any;
-    @Input('preserve-header') dummy4: any;
+    @Input('header-height') headerHeight: any;
+    @Input('init-expanded') initExpanded: any;
+    @Input('opacity-color') opacityColor: any;
+    @Input('opacity-factor') opacityFactor: any;
+    @Input('preserve-header') preserveHeader: any;
 
     @Output() scroll: EventEmitter<number> = new EventEmitter<number>();
 
@@ -86,8 +86,6 @@ export class HidenavStretchheaderComponent implements OnInit, AfterViewInit {
         if(this.name) {
             if (typeof this.globals.data[this.name] == 'undefined' || this.globals.data[this.name] == null)
                 this.globals.data[this.name] = [];
-            if (this.globals.data[this.name].header != null)
-                console.warn('HIDENAV: "' + this.name + '" has been initialized before as SH-HEADER, please make sure all your live directives carry unique names in order to avoid unexpected results');
             this.globals.data[this.name].header = this.header;
             this.globals.data[this.name].static = this.static;
             this.globals.initiate(this.name);

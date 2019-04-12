@@ -23,8 +23,6 @@ export class HidenavShTabscontentDirective {
         if(this.name) {
             if (typeof this.globals.data[this.name] == 'undefined' || this.globals.data[this.name] == null)
                 this.globals.data[this.name] = [];
-            if (this.globals.data[this.name].tabscontent != null)
-                console.warn('HIDENAV: "' + this.name + '" has been initialized before as SH-TABSCONTENT, please make sure all your live directives carry unique names in order to avoid unexpected results');
             this.globals.data[this.name].tabscontent = this.el;
             this.globals.data[this.name].tabscontentElem = this.contentElem;
             this.globals.data[this.name].supertabs = this.supertabs;

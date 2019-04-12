@@ -1,9 +1,9 @@
-<hidenav-stretchheader header-height="50" opacity-factor="7" opacity-color="black" preserve-header="true">
+<hidenav-stretchheader header-height="50" opacity-factor="7" opacity-color="black" preserve-header="false">
   <div #static>
-    <ion-toolbar [routerLink]="'..'" ionic color="white" style="font-size: 46px"><ion-icon style="color: white;" name="arrow-round-back"></ion-icon></ion-toolbar>
+    <ion-toolbar [routerLink]="'..'" color="white" style="font-size: 46px"><ion-icon style="color: white;" name="arrow-round-back"></ion-icon></ion-toolbar>
   </div>
   <div #static #title style="width: 100%;" (click)="expand()">
-    <label style="left: 60px; top: 115px; position: relative; color: white; font-size: 20px; font-weight: bold;">Moving Title</label>
+    <label style="left: 60px; top: 15px; position: relative; color: white; font-size: 20px; font-weight: bold;">Moving Title</label>
   </div>
   <div #shrinkexpand style="background: darkblue; color: gold" (click)="expand()" >
 
