@@ -8,8 +8,23 @@ export class HidenavShService {
 
     data = [];
     mode: any = 'ios';
-
+    names = [];
+    tabnames = [];
     scroll: any;
+
+    requestName(){
+        let name = 'page'+this.names.length;
+        this.names.push(name);
+        return name;
+    }
+
+    requestTabName(name){
+        if(!this.tabnames[name])
+            this.tabnames[name] = [];
+        let tabname = name+'tab'+this.tabnames[name].length;
+        this.tabnames[name].push(tabname);
+        return tabname;
+    }
 
     constructor() {
         this.scroll = new Subject();

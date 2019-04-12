@@ -25,7 +25,8 @@ export class HidenavContentDirective {
             let counter = 0;
             let int = setInterval(() => {
                 let x = $(this.contentElem.nativeElement).closest('[hidenav-tabscontent]').attr('hidenav-tabscontent');
-                if(x.length > 0){
+                counter++;
+                if(!x || x.length > 0){
                     this.parent = $(this.contentElem.nativeElement).closest('[hidenav-tabscontent]').attr('hidenav-tabscontent');
                     this.name = this.globals.requestTabName(this.parent);
                     $(this.contentElem.nativeElement).attr('hidenav-content', this.name);

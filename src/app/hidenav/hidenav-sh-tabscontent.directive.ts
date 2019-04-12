@@ -2,13 +2,14 @@ import {Directive, Input, Host, Self, Optional, ElementRef, ContentChild} from '
 import {IonContent} from '@ionic/angular';
 import {SuperTabs} from '@ionic-super-tabs/angular';
 import {HidenavShService} from './hidenav-sh-service.service';
+import $ from 'jquery';
 
 @Directive({
     selector: '[hidenav-sh-tabscontent]'
 })
 export class HidenavShTabscontentDirective {
 
-    @Input('hidenav-sh-tabscontent') name: string;
+    name: any;
     @ContentChild(SuperTabs) supertabs: SuperTabs;
 
     constructor(public contentElem: ElementRef, @Host() @Self() @Optional() public el: IonContent, private globals: HidenavShService) {
@@ -16,6 +17,9 @@ export class HidenavShTabscontentDirective {
     }
 
     ngAfterViewInit() {
+        this.name = this.globals.requestName();
+        this.contentElem.nativeElement.setAttribute('hidenav-sh-tabscontent', this.name);
+        $('hidenav-stretchheader', $(this.contentElem.nativeElement).parents().get().find(itm => $(itm).find('[hidenav-stretchheader]').length)).attr('hidenav-sh-header', this.name);
         if(this.name) {
             if (typeof this.globals.data[this.name] == 'undefined' || this.globals.data[this.name] == null)
                 this.globals.data[this.name] = [];

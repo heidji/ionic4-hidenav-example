@@ -52,7 +52,7 @@ export class HidenavStretchheaderComponent implements OnInit, AfterViewInit {
     @ContentChild('shrinkexpand', {read: ElementRef}) header: ElementRef;
     @ContentChildren('static', {read: ElementRef}) static: any;
     @HostBinding('class') class: any;
-    @Input('hidenav-sh-header') name: string;
+    name: any;
     @Input('no-border') noBorder: string;
     @Input('header-height') dummy: any;
     @Input('init-expanded') dummy1: any;
@@ -69,6 +69,21 @@ export class HidenavStretchheaderComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach(() => {
+                if(this.el.nativeElement.getAttribute('hidenav-sh-header').length > 0) {
+                    this.name = this.el.nativeElement.getAttribute('hidenav-sh-header');
+                    this.start();
+                    observer.disconnect();
+                }
+            });
+        });
+        observer.observe(this.el.nativeElement, {
+            attributes: true,
+        });
+    }
+    
+    start() {
         if(this.name) {
             if (typeof this.globals.data[this.name] == 'undefined' || this.globals.data[this.name] == null)
                 this.globals.data[this.name] = [];

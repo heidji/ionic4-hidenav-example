@@ -1,4 +1,4 @@
-<hidenav-stretchheader hidenav-sh-header="main" header-height="50" opacity-factor="7" opacity-color="black" init-expanded="false">
+<hidenav-stretchheader header-height="50" opacity-factor="7" opacity-color="black" init-expanded="false">
   <div #static>
     <ion-toolbar [routerLink]="'..'" color="white" style="font-size: 46px"><ion-icon style="color: white;" name="arrow-round-back"></ion-icon></ion-toolbar>
   </div>
@@ -10,7 +10,7 @@
   </div>
 </hidenav-stretchheader>
 
-<ion-content padding hidenav-sh-content="main">
+<ion-content padding hidenav-sh-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
             pullingIcon="arrow-dropdown"

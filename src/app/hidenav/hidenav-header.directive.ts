@@ -17,7 +17,7 @@ export class HidenavHeaderDirective {
         const observer = new MutationObserver((mutations) => {
             mutations.forEach(() => {
                 if(this.el.nativeElement.getAttribute('hidenav-header').length > 0) {
-                    this.name = this.el.nativeElement.getAttribute('hidenav-header')
+                    this.name = this.el.nativeElement.getAttribute('hidenav-header');
                     this.start();
                     observer.disconnect();
                 }

@@ -1,4 +1,4 @@
-<hidenav-stretchheader hidenav-sh-header="main2" header-height="50" opacity-factor="7" opacity-color="black" preserve-header="true">
+<hidenav-stretchheader header-height="50" opacity-factor="7" opacity-color="black" preserve-header="true">
   <div #static>
     <ion-toolbar [routerLink]="'..'" ionic color="white" style="font-size: 46px"><ion-icon style="color: white;" name="arrow-round-back"></ion-icon></ion-toolbar>
   </div>
@@ -59,7 +59,7 @@
     </table>
   </div>
 </hidenav-stretchheader>
-<ion-content hidenav-sh-tabscontent="main2">
+<ion-content hidenav-sh-tabscontent>
   <super-tabs>
     <super-tabs-toolbar slot="top">
       <super-tab-button>
@@ -77,7 +77,7 @@
     </super-tabs-toolbar>
     <super-tabs-container>
       <super-tab>
-        <ion-content hidenav-sh-parent="main2"  hidenav-sh-content="tab12" padding>
+        <ion-content hidenav-sh-content hidenav-tabspage padding>
           <ion-refresher slot="fixed">
             <ion-refresher-content
                     pullingIcon="arrow-dropdown"
@@ -183,7 +183,7 @@
         </ion-content>
       </super-tab>
       <super-tab>
-        <ion-content hidenav-sh-content="tab22" hidenav-sh-parent="main2">
+        <ion-content hidenav-sh-content hidenav-tabspage>
           <p>LOREM IPSUM</p>
           <p>LOREM IPSUM</p>
           <p>LOREM IPSUM</p>
