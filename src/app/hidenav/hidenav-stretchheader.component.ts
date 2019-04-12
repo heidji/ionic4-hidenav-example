@@ -8,9 +8,8 @@ import {
     EventEmitter,
     Output,
     ContentChildren,
-    QueryList, HostBinding
+    HostBinding
 } from '@angular/core';
-import {IonContent} from '@ionic/angular';
 import {HidenavShService} from './hidenav-sh-service.service';
 
 @Component({

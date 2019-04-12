@@ -11,6 +11,8 @@ export class HidenavShContentDirective {
     parent: any;
     name: any;
 
+    @Input('hidenav-tabspage') hntb: any;
+
     constructor( @Host() @Self() @Optional() public el: IonContent, public contentElem: ElementRef, private globals: HidenavShService) {
 
     }

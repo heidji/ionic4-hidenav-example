@@ -1,4 +1,4 @@
-import {Directive, Input, Host, Self, Optional, ElementRef, ViewChild, ContentChildren} from '@angular/core';
+import {Directive, Input, Host, Self, Optional, ElementRef} from '@angular/core';
 import {IonContent} from '@ionic/angular';
 import {HidenavService} from './hidenav-service.service';
 import $ from "jquery";
@@ -10,6 +10,8 @@ export class HidenavContentDirective {
 
     name: any;
     parent: any;
+
+    @Input('hidenav-tabspage') hntb: any;
 
     constructor( public contentElem: ElementRef, @Host() @Self() @Optional() public el: IonContent, private globals: HidenavService) {
 

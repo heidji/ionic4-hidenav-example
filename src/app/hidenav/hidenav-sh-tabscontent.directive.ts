@@ -1,4 +1,4 @@
-import {Directive, Input, Host, Self, Optional, ElementRef, ContentChild} from '@angular/core';
+import {Directive, Host, Self, Optional, ElementRef, ContentChild} from '@angular/core';
 import {IonContent} from '@ionic/angular';
 import {SuperTabs} from '@ionic-super-tabs/angular';
 import {HidenavShService} from './hidenav-sh-service.service';

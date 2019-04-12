@@ -1,8 +1,7 @@
-import {Directive, Input, Host, Self, Optional, ElementRef, ContentChild, ContentChildren} from '@angular/core';
+import {Directive, Host, Self, Optional, ElementRef, ContentChild} from '@angular/core';
 import {IonContent} from '@ionic/angular';
 import {HidenavService} from './hidenav-service.service';
-import {HidenavContentDirective} from './hidenav-content.directive';
-import {SuperTab, SuperTabs} from '@ionic-super-tabs/angular';
+import {SuperTabs} from '@ionic-super-tabs/angular';
 import $ from 'jquery';
 
 @Directive({

@@ -1,6 +1,5 @@
-import {Directive, ElementRef, Input} from '@angular/core';
+import {Directive, ElementRef} from '@angular/core';
 import {HidenavService} from './hidenav-service.service';
-import {observable} from 'rxjs';
 
 @Directive({
   selector: '[hidenav-header]'
