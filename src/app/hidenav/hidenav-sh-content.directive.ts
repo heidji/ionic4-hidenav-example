@@ -26,7 +26,7 @@ export class HidenavShContentDirective {
             let int = setInterval(() => {
                 let x = $(this.contentElem.nativeElement).closest('[hidenav-sh-tabscontent]').attr('hidenav-sh-tabscontent');
                 counter++;
-                if(!x || x.length > 0){
+                if(x && x.length > 0){
                     this.parent = $(this.contentElem.nativeElement).closest('[hidenav-sh-tabscontent]').attr('hidenav-sh-tabscontent');
                     this.name = this.globals.requestTabName(this.parent);
                     $(this.contentElem.nativeElement).attr('hidenav-sh-content', this.name);
