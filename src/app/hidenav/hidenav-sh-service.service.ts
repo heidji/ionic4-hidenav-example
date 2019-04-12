@@ -207,6 +207,17 @@ export class HidenavShService {
                     this.data[name].lastscroll = height;
                     //
                 });
+                //catch the last tick
+                this.data[name].content.ionScrollEnd.subscribe(() => {
+                    setTimeout(() => {
+                        if (this.data[name].contentElem.scrollTop == 0) {
+                            this.data[name].contentElem.style.paddingTop = 0;
+                            this.data[name].contentEl.nativeElement.style.height = (this.data[name].contentHeight - this.data[name].shrinkexpandHeight) + 'px';
+                            this.data[name].contentEl.nativeElement.style.top = (this.data[name].shrinkexpandHeight + this.data[name].paddingTop) + 'px';
+                            elemPad.style.height = (this.data[name].elemPadHeight + this.data[name].shrinkexpandHeight + this.data[name].paddingTop) + 'px';
+                        }
+                    }, 10)
+                });
             });
         });
     }
@@ -283,6 +294,17 @@ export class HidenavShService {
                     }
                     this.data[name].lastscroll = height;
                     //
+                });
+                //catch the last tick
+                this.data[name].content.ionScrollEnd.subscribe(() => {
+                    setTimeout(() => {
+                        if (this.data[name].contentElem.scrollTop == 0) {
+                            this.data[name].contentElem.style.paddingTop = 0;
+                            this.data[name].contentEl.nativeElement.style.height = (this.data[name].contentHeight - (this.data[name].shrinkexpandHeight + supertabsToolbar.clientHeight)) + 'px';
+                            this.data[name].contentEl.nativeElement.style.top = (this.data[name].shrinkexpandHeight + supertabsToolbar.clientHeight + this.data[name].paddingTop) + 'px';
+                            elemPad.style.height = (this.data[name].elemPadHeight + this.data[name].shrinkexpandHeight + this.data[name].paddingTop + supertabsToolbar.clientHeight) + 'px';
+                        }
+                    }, 10)
                 });
             });
         });

@@ -59,9 +59,15 @@ export class HidenavService {
             setTimeout(() => {
                 this.data[name].navheight = this.data[name].header.nativeElement.offsetHeight;
                 let scrollContent: any = contentElem.nativeElement.shadowRoot.querySelector('.inner-scroll');
-                scrollContent.style.top = '-' + this.data[name].navheight + 'px';
-                scrollContent.style.paddingTop = parseInt(window.getComputedStyle(scrollContent)['padding-top'], 10) + this.data[name].navheight + 'px';
+                this.data[name].paddingTop = parseInt(window.getComputedStyle(scrollContent)['padding-top'], 10);
                 content.ionScroll.subscribe((e) => {
+                    if(e.detail.scrollTop == 0){
+                        scrollContent.style.top = null;
+                        scrollContent.style.paddingTop = this.data[name].paddingTop + 'px';
+                    }else{
+                        scrollContent.style.top = '-' + this.data[name].navheight + 'px';
+                        scrollContent.style.paddingTop = this.data[name].paddingTop + this.data[name].navheight + 'px';
+                    }
                     if (scrollContent.scrollHeight > (scrollContent.clientHeight + 100)) {
                         this.data[name].scrolling = true;
                         let x = this.data[name].lastscroll - e.detail.scrollTop;
@@ -75,16 +81,23 @@ export class HidenavService {
                         header.nativeElement.style.transform = 'translate3d(0, ' + -this.data[name].scrollTop + 'px, 0)';
                     }
                 });
+                content.ionScrollEnd.subscribe(() => {
+                    setTimeout(() => {
+                        //catch the last tick
+                        if (scrollContent.scrollTop == 0) {
+                            scrollContent.style.top = null;
+                            scrollContent.style.paddingTop = this.data[name].paddingTop + 'px';
+                        }
+                        this.data[name].scrolling = false;
+                        this.c(name);
+                    }, 10)
+                });
             }, 100);
             contentElem.nativeElement.addEventListener('touchend', () => {
                 this.data[name].tapping = false;
                 this.c(name);
             });
             contentElem.nativeElement.addEventListener('touchstart', () => this.data[name].tapping = true);
-            content.ionScrollEnd.subscribe(() => {
-                this.data[name].scrolling = false;
-                this.c(name);
-            });
         } else if (parent) {
             let header = this.data[parent].header;
             let tabscontentElem = this.data[parent].tabscontentElem;
@@ -127,16 +140,26 @@ export class HidenavService {
                     header.nativeElement.style.transform = 'translate3d(0, ' + -this.data[name].scrollTop + 'px, 0)';
                     supertabsToolbar.style.transform = 'translate3d(0, ' + -this.data[name].scrollTop + 'px, 0)';
                 });
+                content.ionScrollEnd.subscribe(() => {
+                    setTimeout(() => {
+                        //catch the last tick
+                        if (scrollContent.scrollTop == 0) {
+                            supertabsToolbar.style.position = 'static';
+                            scrollContent.style.paddingTop = this.data[name].paddingTop + 'px';
+                            tabscontentElem.nativeElement.style.top = null;
+                            tabsscrollContent.style.height = this.data[parent].tabscontentHeight + 'px';
+                            tabscontentElem.nativeElement.style.top = null;
+                        }
+                        this.data[name].scrolling = false;
+                        this.c(name);
+                    }, 10)
+                });
             }, 100);
             contentElem.nativeElement.addEventListener('touchend', () => {
                 this.data[name].tapping = false;
                 this.c(name);
             });
             contentElem.nativeElement.addEventListener('touchstart', () => this.data[name].tapping = true);
-            content.ionScrollEnd.subscribe(() => {
-                this.data[name].scrolling = false;
-                this.c(name);
-            });
         }
     }
 

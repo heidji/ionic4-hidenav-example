@@ -34,7 +34,6 @@ export class HidenavContentDirective {
                     this.start();
                     clearInterval(int);
                 }else if(counter > 50){
-                    console.warn('HIDENAV: page declared as tabspage but no tabscontent page found');
                     clearInterval(int);
                 }
             }, 50)
