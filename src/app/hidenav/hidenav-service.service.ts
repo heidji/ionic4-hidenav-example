@@ -6,8 +6,24 @@ import {Injectable} from '@angular/core';
 export class HidenavService {
 
     data = [];
+    names = [];
+    tabnames = [];
 
     constructor() {
+    }
+
+    requestName(){
+        let name = 'page'+this.names.length;
+        this.names.push(name);
+        return name;
+    }
+
+    requestTabName(name){
+        if(!this.tabnames[name])
+            this.tabnames[name] = [];
+        let tabname = name+'tab'+this.tabnames[name].length;
+        this.tabnames[name].push(tabname);
+        return tabname;
     }
 
     initiate(name) {
@@ -147,12 +163,10 @@ export class HidenavService {
         let tabscontentElem = this.data[parent].tabscontentElem;
         let supertabsToolbar: any = tabscontentElem.nativeElement.querySelector('super-tabs-toolbar');
         let tabsscrollContent: any = this.data[parent].tabscontentElem.nativeElement.shadowRoot.querySelector('.inner-scroll');
-
         let scrollContent: any = this.data[name].contentElem.nativeElement.shadowRoot.querySelector('.inner-scroll');
         scrollContent.scrollTop = scrollContent.scrollTop - this.data[name].scrollTop;
         setTimeout(() => {
             if (scrollContent.scrollTop == 0) {
-                console.log(name, scrollContent.scrollTop);
                 supertabsToolbar.style.position = 'static';
                 scrollContent.style.paddingTop = this.data[name].paddingTop + 'px';
                 tabscontentElem.nativeElement.style.top = null;

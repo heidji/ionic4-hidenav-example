@@ -8,7 +8,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content hidenav-tabscontent="main">
+<ion-content hidenav-tabscontent>
   <super-tabs>
     <super-tabs-toolbar slot="top">
       <super-tab-button>
@@ -26,7 +26,7 @@
     </super-tabs-toolbar>
     <super-tabs-container>
       <super-tab>
-        <ion-content hidenav-content="tab1" hidenav-parent="main">
+        <ion-content hidenav-content hidenav-tabspage>
           <ion-refresher slot="fixed">
             <ion-refresher-content
                     pullingIcon="arrow-dropdown"

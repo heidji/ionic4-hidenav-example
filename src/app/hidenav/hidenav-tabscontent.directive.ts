@@ -1,22 +1,27 @@
 import {Directive, Input, Host, Self, Optional, ElementRef, ContentChild, ContentChildren} from '@angular/core';
 import {IonContent} from '@ionic/angular';
 import {HidenavService} from './hidenav-service.service';
-import  {HidenavContentDirective} from './hidenav-content.directive';
+import {HidenavContentDirective} from './hidenav-content.directive';
 import {SuperTab, SuperTabs} from '@ionic-super-tabs/angular';
+import $ from 'jquery';
 
 @Directive({
     selector: '[hidenav-tabscontent]'
 })
 export class HidenavTabscontentDirective {
 
-    @Input('hidenav-tabscontent') name: string;
     @ContentChild(SuperTabs) supertabs: SuperTabs;
+
+    name: any;
 
     constructor(public contentElem: ElementRef, @Host() @Self() @Optional() public el: IonContent, private globals: HidenavService) {
 
     }
 
     ngAfterViewInit() {
+        this.name = this.globals.requestName();
+        this.contentElem.nativeElement.setAttribute('hidenav-tabscontent', this.name);
+        $('[hidenav-header]', $(this.contentElem.nativeElement).parents().get().find(itm => $(itm).find('[hidenav-header]').length)).attr('hidenav-header', this.name);
         if (this.name) {
             if (typeof this.globals.data[this.name] == 'undefined' || this.globals.data[this.name] == null)
                 this.globals.data[this.name] = [];
@@ -39,7 +44,6 @@ export class HidenavTabscontentDirective {
                             else
                                 results.push(null);
                         }
-                        console.log(results)
                         if (results[i] != null) {
                             this.globals.resetTabs(this.name, results[i]);
 
