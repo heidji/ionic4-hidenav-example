@@ -1,8 +1,8 @@
 {
-  "name": "ionic-super-tabs-example",
+  "name": "ionic-4-hidenav-example",
   "version": "0.0.1",
-  "author": "Zyra Media Inc.",
-  "homepage": "https://zyramedia.com/",
+  "author": "Hossam El-Nadi",
+  "homepage": "https://github.com/heidji/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
