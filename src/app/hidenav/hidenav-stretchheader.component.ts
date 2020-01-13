@@ -17,6 +17,7 @@ import {HidenavShService} from './hidenav-sh-service.service';
     template: `
         <style>
             .overlay {
+                padding-top:env(safe-area-inset-top);
                 position: absolute;
                 height: inherit;
                 width: inherit;
