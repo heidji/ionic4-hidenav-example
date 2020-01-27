@@ -34,7 +34,7 @@ export class HidenavShTabscontentDirective {
                 let results = [];
                 for (let tab of tabs) {
                     let cont = tab.querySelector('ion-content');
-                    if (cont.attributes['hidenav-sh-content'])
+                    if (cont != null && typeof cont.attributes['hidenav-sh-content'] != 'undefined' && cont.attributes['hidenav-sh-content'].nodeValue != '')
                         results.push(cont.attributes['hidenav-sh-content'].nodeValue);
                     else
                         results.push(null);
